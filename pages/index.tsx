@@ -101,7 +101,7 @@ Home.getInitialProps = async (
   // Fetching csv file from server file
   try {
     const data = await axios.get(
-      `${process.env.NEXT_PUBLIC_URL}/Table_Input.csv`
+      `https://raw.githubusercontent.com/jyan212/testtest/main/public/Table_Input.csv`
     );
     console.log('successfully retrieved data"', data);
     const processedData = processTable(data.data);
