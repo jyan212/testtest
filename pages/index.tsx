@@ -72,10 +72,10 @@ export default function Home({ props }: any) {
             const c1 = row;
             const c2 =
               i == 0
-                ? parseInt(data[5][1]) + parseInt(data[20][1])
+                ? parseInt(data[5][1]) + parseInt(data[20][1]) // A5 + A20
                 : i == 1
-                ? parseInt(data[15][1]) / parseInt(data[7][1])
-                : parseInt(data[13][1]) * parseInt(data[12][1]);
+                ? parseInt(data[15][1]) / parseInt(data[7][1]) // A15 / A7
+                : parseInt(data[13][1]) * parseInt(data[12][1]); // A13 * A12
             return (
               <tr key={i}>
                 <td>{c1}</td>
@@ -98,7 +98,9 @@ Home.getInitialProps = async (
   context: any
 ): Promise<{ props: HomeInitialProps }> => {
   // Fetching csv file from server
-  const data = await axios.get("http://localhost:3000/Table_Input.csv");
+  const data = await axios.get(
+    `${process.env.NEXT_PUBLIC_URL}/Table_Input.csv`
+  );
   const processedData = processTable(data.data);
 
   return {
