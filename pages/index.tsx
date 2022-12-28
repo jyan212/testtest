@@ -100,7 +100,9 @@ Home.getInitialProps = async (
 ): Promise<{ props: HomeInitialProps }> => {
   // Fetching csv file from server file
   try {
-    const data = await axios.get(`http://localhost:3000/Table_Input.csv`);
+    const data = await axios.get(
+      `${process.env.NEXT_PUBLIC_URL}/Table_Input.csv`
+    );
     console.log('successfully retrieved data"', data);
     const processedData = processTable(data.data);
 
