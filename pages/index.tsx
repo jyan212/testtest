@@ -101,6 +101,7 @@ Home.getInitialProps = async (
   const data = await axios.get(
     `${process.env.NEXT_PUBLIC_URL}/Table_Input.csv`
   );
+  console.log('successfully retrieved data"', data);
   const processedData = processTable(data.data);
 
   return {
