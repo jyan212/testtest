@@ -20,6 +20,7 @@ const processTable = (data: string): TableDataTypes => {
 
 export default function Home({ props }: any) {
   const { data } = props;
+  console.log(data);
   const rowId = ["Alpha", "Beta", "Charlie"];
   return (
     <div className="container-fluid">
@@ -98,15 +99,24 @@ Home.getInitialProps = async (
   context: any
 ): Promise<{ props: HomeInitialProps }> => {
   // Fetching csv file from server file
-  const data = await axios.get(
-    `${process.env.NEXT_PUBLIC_URL}/Table_Input.csv`
-  );
-  console.log('successfully retrieved data"', data);
-  const processedData = processTable(data.data);
+  try {
+    const data = await axios.get(`http://localhost:3000/Table_Input.csv`);
+    console.log('successfully retrieved data"', data);
+    const processedData = processTable(data.data);
 
-  return {
-    props: {
-      data: processedData,
-    }, // will be passed to the page component as props
-  };
+    return {
+      props: {
+        data: processedData,
+      }, // will be passed to the page component as props
+    };
+  } catch (err) {
+    const data = [[]];
+    console.log(err);
+
+    return {
+      props: {
+        data: data,
+      }, // will be passed to the page component as props
+    };
+  }
 };
