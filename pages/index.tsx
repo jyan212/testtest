@@ -18,7 +18,7 @@ const processTable = (data: string): TableDataTypes => {
   return processedData;
 };
 
-export default function Home({ props }) {
+export default function Home({ props }: any) {
   const { data } = props;
   const rowId = ["Alpha", "Beta", "Charlie"];
   return (
