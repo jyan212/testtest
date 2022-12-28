@@ -5,10 +5,10 @@ type TableDataTypes = string[][];
 
 const processTable = (data: string): TableDataTypes => {
   /*
-    Process the CSV data from string by splitting its delimiter (,) and newline (\r\n)
+    Process the CSV data from string by splitting its delimiter (,) and newline (\n)
   */
 
-  let processedDataArr = data.split("\r\n"); // split data by newline
+  let processedDataArr = data.split("\n"); // split data by newline
 
   let processedData = [];
   for (let row of processedDataArr) {
@@ -100,10 +100,14 @@ Home.getInitialProps = async (
 ): Promise<{ props: HomeInitialProps }> => {
   // Fetching csv file from server file
   try {
-    const data = await axios.get(
-      `https://raw.githubusercontent.com/jyan212/testtest/main/public/Table_Input.csv`
+    let data = await axios.get(
+      "https://raw.githubusercontent.com/jyan212/testtest/main/public/Table_Input.csv",
+      {
+        responseType: "text",
+      }
     );
-    console.log('successfully retrieved data"', data);
+
+    console.log('wsuccessfully retrieved data"', data.data);
     const processedData = processTable(data.data);
 
     return {
