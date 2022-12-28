@@ -97,7 +97,7 @@ interface HomeInitialProps {
 Home.getInitialProps = async (
   context: any
 ): Promise<{ props: HomeInitialProps }> => {
-  // Fetching csv file from server
+  // Fetching csv file from server file
   const data = await axios.get(
     `${process.env.NEXT_PUBLIC_URL}/Table_Input.csv`
   );
